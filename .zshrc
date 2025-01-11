@@ -7,6 +7,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+export GPG_TTY=$TTY
+
 # Enable color support of ls and also add handy aliases (yanked from .bashrc)
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
