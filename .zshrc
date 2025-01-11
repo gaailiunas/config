@@ -23,7 +23,7 @@ fi
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 export CLICOLOR=1
-export PS1='%B%n@%m:%F{cyan}%~%f$ %b'
+export PS1='%B%n@%m:%F{#F0C674}%~%f$ %b'
 export EDITOR='vim'
 
 bindkey '^[[A' up-line-or-search	# Ctrl + Up Arrow
