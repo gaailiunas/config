@@ -4,6 +4,7 @@ local Plug = vim.fn['plug#']
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Start plugin management
 vim.call('plug#begin')
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug('tiagovla/tokyodark.nvim')
@@ -11,21 +12,23 @@ Plug('nvim-tree/nvim-tree.lua')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim', {['tag'] = '0.1.8'})
 Plug('neovim/nvim-lspconfig')
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug('hrsh7th/nvim-cmp')
 vim.call('plug#end')
 
+-- Treesitter configuration
 require("nvim-treesitter.configs").setup{
-  highlight = {
-    enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
 }
 
+-- Set colorscheme
 vim.cmd("colorscheme tokyodark")
 vim.cmd("syntax on")
+
+-- General settings
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
@@ -34,8 +37,31 @@ vim.opt.autoindent = true
 vim.opt.guicursor = "n-v-i-c:block-Cursor"
 vim.opt.cursorline = true
 
+-- Nvim Tree setup
 require("nvim-tree").setup()
-require("lspconfig").clangd.setup{}
+
+-- LSP configuration for clangd
+local lspconfig = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local cmp = require("cmp")  -- Require cmp here
+
+lspconfig.clangd.setup{
+    capabilities = cmp_nvim_lsp.default_capabilities(),
+}
+
+-- nvim-cmp setup
+cmp.setup({
+    mapping = {
+        ['<C-Space>'] = cmp.mapping.complete(),  -- Trigger completion
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Confirm selection
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item()
+    },
+    sources = {
+        { name = 'nvim_lsp' },  -- Add nvim_lsp source for LSP completions
+        { name = 'buffer' },     -- Buffer source for completions from open buffers
+    },
+})
 
 vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<cr>', { desc = "Toggle Nvim Tree" })
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
