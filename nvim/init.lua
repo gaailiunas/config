@@ -64,6 +64,9 @@ cmp.setup({
         { name = 'nvim_lsp' },  -- Add nvim_lsp source for LSP completions
         { name = 'buffer' },     -- Buffer source for completions from open buffers
     },
+    experimental = {
+        ghost_text = true,
+    },
 })
 
 vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<cr>', { desc = "Toggle Nvim Tree" })
