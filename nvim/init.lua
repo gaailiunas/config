@@ -48,6 +48,9 @@ local cmp = require("cmp")  -- Require cmp here
 lspconfig.clangd.setup{
     capabilities = cmp_nvim_lsp.default_capabilities(),
 }
+lspconfig.rust_analyzer.setup{
+
+}
 
 -- nvim-cmp setup
 cmp.setup({
@@ -67,6 +70,7 @@ vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<cr>', { desc = "Toggle Nvim
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fc', "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format code" })
+vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { noremap = true, silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
