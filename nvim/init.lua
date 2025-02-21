@@ -7,6 +7,7 @@ vim.g.loaded_netrwPlugin = 1
 -- Start plugin management
 vim.call('plug#begin')
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+Plug('nvim-tree/nvim-web-devicons')
 Plug('tiagovla/tokyodark.nvim')
 Plug('nvim-tree/nvim-tree.lua')
 Plug('nvim-lua/plenary.nvim')
