@@ -1,0 +1,51 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-right": ["tray", "cpu", "memory", "pulseaudio", "clock", "custom/power"],
+  
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "default": "●",
+      "active": "●",
+      "urgent": "●"
+    }
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 6
+  },
+
+  "cpu": {
+    "format": "CPU {usage}%",
+    "interval": 2
+  },
+
+  "memory": {
+    "format": "RAM {percentage}%",
+    "interval": 5
+  },
+
+  "pulseaudio": {
+    "format": "VOL {volume}%",
+    "format-muted": "MUTED",
+    "on-click": "pavucontrol"
+  },
+
+  "clock": {
+    "format": "{:%H:%M  %Y-%m-%d}",
+    "interval": 60
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": "Power Menu",
+    "on-click": "~/.config/waybar/scripts/power-menu.sh",
+    "interval": 0
+  }
+}
+
