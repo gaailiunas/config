@@ -67,15 +67,22 @@ cmp.setup({
     },
 })
 
-vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<cr>', { desc = "Toggle Nvim Tree" })
-vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fc', "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format code" })
-vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { noremap = true, silent = true })
+-- NvimTree
+vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<cr>', { desc = 'Focus NvimTree', noremap = true, silent = true })
 
+-- LSP
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration', noremap = true, silent = true })
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fc', vim.lsp.buf.format, { desc = 'Format code', noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help, { desc = 'Signature help', noremap = true, silent = true })
+
+-- Diagnostics
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostics', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>r', vim.diagnostic.goto_next, { desc = 'Next diagnostic', noremap = true, silent = true })
+
+-- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope: Find files', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope: Live grep', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope: Buffers', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: Help tags', noremap = true, silent = true })
