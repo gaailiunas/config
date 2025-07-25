@@ -14,6 +14,7 @@ Plug('hrsh7th/nvim-cmp')
 Plug('lukas-reineke/indent-blankline.nvim')
 Plug('nvim-lualine/lualine.nvim')
 Plug('EdenEast/nightfox.nvim')
+Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
 vim.call('plug#end')
 
 -- Treesitter configuration
@@ -63,6 +64,7 @@ vim.diagnostic.config {
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local cmp = require("cmp")  -- Require cmp here
+local toggleterm = require("toggleterm")
 
 lspconfig.clangd.setup{
     capabilities = cmp_nvim_lsp.default_capabilities(),
@@ -91,6 +93,20 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     }
 })
+
+local Terminal = require('toggleterm.terminal').Terminal
+
+local float_term = Terminal:new({
+  direction = "float",
+  hidden = true,
+  size = vim.o.lines * 0.5,
+  width = vim.o.columns * 0.7,
+})
+
+-- Toggle terminal
+vim.keymap.set({'n', 't'}, '<leader>ft', function()
+  float_term:toggle()
+end, { desc = "Toggle Floating Terminal", noremap = true, silent = true })
 
 -- NvimTree
 vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<cr>', { desc = 'Focus NvimTree', noremap = true, silent = true })
