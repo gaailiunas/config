@@ -1,6 +1,6 @@
 #!/bin/bash
 
-choice=$(echo -e "⏻  Shutdown\n  Reboot\n󰍁  Logout" | wofi --show dmenu --width 200 --height 225 --hide-scroll --conf ~/.config/waybar/scripts/no_search.conf)
+choice=$(echo -e "⏻  Shutdown\n  Reboot\n󰍁  Logout" | wofi --show dmenu --width 200 --height 136 --hide-scroll --hide-search) 
 
 case "$choice" in
   *Shutdown) systemctl poweroff ;;
