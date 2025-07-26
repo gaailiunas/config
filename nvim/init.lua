@@ -42,7 +42,12 @@ vim.opt.cursorline = true
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1f1f1f" })
 
 -- Indent Blankline setup
-require("ibl").setup()
+require("ibl").setup({
+    scope = {
+        show_start = false,
+        show_end = false,
+    }
+})
 
 -- LuaLine setup
 require('lualine').setup()
