@@ -134,6 +134,7 @@ vim.keymap.set({'i', 'v'}, '<C-s>', signature_help_with_border, { noremap = true
 -- Diagnostics
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostics', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>r', vim.diagnostic.goto_next, { desc = 'Next diagnostic', noremap = true, silent = true })
+vim.keymap.set({'n', 'v'}, '<leader>q', vim.lsp.buf.code_action, { desc = 'Apply code action / fix diagnostic issue', noremap = true, silent = true })
 
 -- Telescope
 local builtin = require('telescope.builtin')
